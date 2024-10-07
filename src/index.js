@@ -1,3 +1,15 @@
+import DOCS from './help.html'
+
+// return docs
+if (url.pathname === "/") {
+  return new Response(DOCS, {
+    status: 200,
+    headers: {
+      "content-type": "text/html"
+    }
+  });
+}
+
 addEventListener("fetch", (event) => {
   event.passThroughOnException();
   event.respondWith(handleRequest(event.request));
@@ -7,17 +19,17 @@ const dockerHub = "https://registry-1.docker.io";
 
 const routes = {
   // production
-  "docker.libcuda.so": dockerHub,
-  "quay.libcuda.so": "https://quay.io",
-  "gcr.libcuda.so": "https://gcr.io",
-  "k8s-gcr.libcuda.so": "https://k8s.gcr.io",
-  "k8s.libcuda.so": "https://registry.k8s.io",
-  "ghcr.libcuda.so": "https://ghcr.io",
-  "cloudsmith.libcuda.so": "https://docker.cloudsmith.io",
-  "ecr.libcuda.so": "https://public.ecr.aws",
+  "docker-proxy.icloudapi.com": dockerHub,
+  "quay.icloudapi.com": "https://quay.io",
+  "gcr.icloudapi.com": "https://gcr.io",
+  "k8s-gcr.icloudapi.com": "https://k8s.gcr.io",
+  "k8s.icloudapi.com": "https://registry.k8s.io",
+  "ghcr.icloudapi.com": "https://ghcr.io",
+  "cloudsmith.icloudapi.com": "https://docker.cloudsmith.io",
+  "ecr.icloudapi.com": "https://public.ecr.aws",
 
   // staging
-  "docker-staging.libcuda.so": dockerHub,
+  "docker-staging.icloudapi.com": dockerHub,
 };
 
 function routeByHosts(host) {
